@@ -45,7 +45,7 @@ public class TitanicDataAppl {
             int countUnSurvived = 0;
             int countUnSurvivedMale = 0;
             int countUnSurvivedFemale = 0;
-            int countUnSurvivedChild = totalPassenger - countSurvived - countUnSurvivedFemale - countUnSurvivedMale;
+
 
 
 
@@ -74,13 +74,13 @@ public class TitanicDataAppl {
                 if (Integer.valueOf(passengers[1]) == 1) {
                     countSurvived++;
                     if (passengers[5].equalsIgnoreCase("male") && !passengers[6].isEmpty()) {
-                        if (Integer.valueOf(passengers[6]) >= 18) {
+                        if (Double.valueOf(passengers[6]) >= 18) {
                             countSurvivedMale++;
 
                         }
                     }
                     if (!passengers[6].isEmpty()) {
-                        if (Integer.valueOf(passengers[6]) >= 18) {
+                        if (Double.valueOf(passengers[6]) >= 18) {
                             countSurvivedFemale++;
                         }
                     }
@@ -89,13 +89,13 @@ public class TitanicDataAppl {
                 if (Integer.valueOf(passengers[1]) == 0) {
                     countUnSurvived++;
                     if (passengers[5].equalsIgnoreCase("female") && !passengers[6].isEmpty()) {
-                        if (Integer.valueOf(passengers[6]) >= 18) {
+                        if (Double.valueOf(passengers[6]) >= 18) {
                             countUnSurvivedFemale++;
 
                         }
                     }
                     if (!passengers[6].isEmpty()) {
-                        if (Integer.valueOf(passengers[6]) >= 18) {
+                        if (Double.valueOf(passengers[6]) >= 18) {
                             countUnSurvivedMale++;
                         }
                     }
@@ -103,7 +103,7 @@ public class TitanicDataAppl {
 
                 if (Integer.valueOf(passengers[1]) == 1) {
                     if (!passengers[6].isEmpty()) {
-                        if (Integer.valueOf(passengers[6]) < 18) {
+                        if (Double.valueOf(passengers[6]) < 18) {
                             countSurvivedChild++;
                         }
                     } else countSurvivedChild++;
@@ -137,7 +137,7 @@ public class TitanicDataAppl {
 
             System.out.println("Total quantity of non survived  men: " + countUnSurvivedMale);
             System.out.println("Total quantity of non survived  women: " + countUnSurvivedFemale);
-            System.out.println("Total quantity of non survived  children: " + countUnSurvivedChild);
+            System.out.println("Total quantity of non survived  children: " + ( totalPassenger - countSurvived - countUnSurvivedFemale - countUnSurvivedMale));
 
 
 
