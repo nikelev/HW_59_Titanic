@@ -45,7 +45,7 @@ public class TitanicDataAppl {
             int countUnSurvived = 0;
             int countUnSurvivedMale = 0;
             int countUnSurvivedFemale = 0;
-            int countUnSurvivedChild = 0;
+            int countUnSurvivedChild = totalPassenger - countSurvived - countUnSurvivedFemale - countUnSurvivedMale;
 
 
 
@@ -73,14 +73,44 @@ public class TitanicDataAppl {
 
                 if (Integer.valueOf(passengers[1]) == 1) {
                     countSurvived++;
-//                    if (passengers[5].equalsIgnoreCase("male"))&& Integer.valueOf(passengers[6])>18{
-//
-//                    }
+                    if (passengers[5].equalsIgnoreCase("male") && !passengers[6].isEmpty()) {
+                        if (Integer.valueOf(passengers[6]) >= 18) {
+                            countSurvivedMale++;
+
+                        }
+                    }
+                    if (!passengers[6].isEmpty()) {
+                        if (Integer.valueOf(passengers[6]) >= 18) {
+                            countSurvivedFemale++;
+                        }
+                    }
                 }
 
                 if (Integer.valueOf(passengers[1]) == 0) {
                     countUnSurvived++;
+                    if (passengers[5].equalsIgnoreCase("female") && !passengers[6].isEmpty()) {
+                        if (Integer.valueOf(passengers[6]) >= 18) {
+                            countUnSurvivedFemale++;
+
+                        }
+                    }
+                    if (!passengers[6].isEmpty()) {
+                        if (Integer.valueOf(passengers[6]) >= 18) {
+                            countUnSurvivedMale++;
+                        }
+                    }
                 }
+
+                if (Integer.valueOf(passengers[1]) == 1) {
+                    if (!passengers[6].isEmpty()) {
+                        if (Integer.valueOf(passengers[6]) < 18) {
+                            countSurvivedChild++;
+                        }
+                    } else countSurvivedChild++;
+
+                }
+
+
 
 
 //                LocalDate birtthDate=LocalDate.parse(cells[3], DateTimeFormatter.ofPattern("dd.MM.yyyy"));
@@ -100,6 +130,14 @@ public class TitanicDataAppl {
 
             System.out.println("Was Survived total: " + countSurvived + " peoples");
             System.out.println("Was not Survived total: " + countUnSurvived + " peoples");
+
+            System.out.println("Total quantity of survived  men: " + countSurvivedMale);
+            System.out.println("Total quantity of survived  women: " + countSurvivedFemale);
+            System.out.println("Total quantity of survived  children: " + countSurvivedChild);
+
+            System.out.println("Total quantity of non survived  men: " + countUnSurvivedMale);
+            System.out.println("Total quantity of non survived  women: " + countUnSurvivedFemale);
+            System.out.println("Total quantity of non survived  children: " + countUnSurvivedChild);
 
 
 
